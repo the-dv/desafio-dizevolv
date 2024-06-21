@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+import Modal from '@/Pages/Financial/Partials/Modal.vue';
 </script>
 
 <template>
@@ -25,7 +26,7 @@ import { Head } from '@inertiajs/vue3';
                             <thead>
                                 <tr>
 
-                                    <th class="text-xl">Responsável</th>
+                                    <th class="text-xl">Responsvel</th>
                                     <th class="text-xl">Nome projeto</th>
                                     <th class="text-xl">Status</th>
                                     <th class="text-xl">Detalhes</th>
@@ -58,10 +59,39 @@ import { Head } from '@inertiajs/vue3';
                                         <div class="badge badge-warning text-white">Em andamento</div>
                                     </td>
                                     <th>
-                                        <button class="btn btn-primary btn-xs">Tarefas do projeto</button>
+                                        <Modal />
                                     </th>
                                 </tr>
 
+                                <!-- row 2-->
+                                <tr>
+
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <div class="avatar">
+                                                <div class="mask mask-squircle w-12 h-12">
+                                                    <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
+                                                        alt="Avatar Tailwind CSS Component" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="font-bold">Hart Hagerty</div>
+                                                <div class="text-sm opacity-50">United States</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Dashboard financeiro em power BI
+                                        <br />
+                                        <span class="badge badge-ghost badge-sm">Criado em: 17/03/2024</span>
+                                    </td>
+                                    <td>
+                                        <div class="badge badge-warning text-white">Em andamento</div>
+                                    </td>
+                                    <th>
+                                        <Modal />
+                                    </th>
+                                </tr>
                             </tbody>
 
                         </table>
