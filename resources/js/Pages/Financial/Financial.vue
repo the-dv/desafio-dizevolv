@@ -2,40 +2,40 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import Modal from '@/Pages/Financial/Partials/Modal.vue';
+import Modal2 from '@/Pages/Financial/Partials/Modal2.vue';
 </script>
 
 <template>
-
-    <Head title="Financeiro" />
-
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Projetos - Financeiro</h2>
         </template>
-
+          
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
 
+                    <!-- Botão "Criar novo projeto" -->
+                    <div class="mb-4">
+                        <Modal2 ref="modal2"></Modal2>
+                    </div>
 
-                    <!-- tabela de projetos -->
-
+                    <!-- Tabela de projetos -->
                     <div class="overflow-x-auto">
                         <table class="table">
-                            <!-- head -->
+                            <!-- Cabeçalho da tabela -->
                             <thead>
                                 <tr>
-
-                                    <th class="text-xl">Responsvel</th>
-                                    <th class="text-xl">Nome projeto</th>
+                                    <th class="text-xl">Responsável</th>
+                                    <th class="text-xl">Nome do projeto</th>
+                                    <th class="text-xl">Descrição</th>
                                     <th class="text-xl">Status</th>
                                     <th class="text-xl">Detalhes</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- row 1 -->
+                                <!-- Linha 1 - Exemplo -->
                                 <tr>
-
                                     <td>
                                         <div class="flex items-center gap-3">
                                             <div class="avatar">
@@ -51,21 +51,22 @@ import Modal from '@/Pages/Financial/Partials/Modal.vue';
                                         </div>
                                     </td>
                                     <td>
-                                        Dashboard financeiro em power BI
-                                        <br />
-                                        <span class="badge badge-ghost badge-sm">Criado em: 17/03/2024</span>
+                                        <div>Dashboard financeiro em power BI</div>
+                                        <div class="text-xs opacity-50">Criado em: 17/03/2024</div>
+                                    </td>
+                                    <td>
+                                        <div>Descrição do projeto aqui...</div>
                                     </td>
                                     <td>
                                         <div class="badge badge-warning text-white">Em andamento</div>
                                     </td>
-                                    <th>
+                                    <td>
                                         <Modal />
-                                    </th>
+                                    </td>
                                 </tr>
 
-                                <!-- row 2-->
+                                <!-- Linha 2 - Exemplo -->
                                 <tr>
-
                                     <td>
                                         <div class="flex items-center gap-3">
                                             <div class="avatar">
@@ -81,22 +82,22 @@ import Modal from '@/Pages/Financial/Partials/Modal.vue';
                                         </div>
                                     </td>
                                     <td>
-                                        Dashboard financeiro em power BI
-                                        <br />
-                                        <span class="badge badge-ghost badge-sm">Criado em: 17/03/2024</span>
+                                        <div>Dashboard financeiro em power BI</div>
+                                        <div class="text-xs opacity-50">Criado em: 17/03/2024</div>
+                                    </td>
+                                    <td>
+                                        <div>Descrição do projeto aqui...</div>
                                     </td>
                                     <td>
                                         <div class="badge badge-warning text-white">Em andamento</div>
                                     </td>
-                                    <th>
+                                    <td>
                                         <Modal />
-                                    </th>
+                                    </td>
                                 </tr>
                             </tbody>
-
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
