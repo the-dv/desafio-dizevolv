@@ -6,17 +6,21 @@ import Modal from '@/Pages/Financial/Partials/Modal.vue';
 
 <template>
 
-    <Head title="Financeiro" />
-
+    <Head> title="Financeiro" </head>
+      
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Projetos - Financeiro</h2>
         </template>
-
+          
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
 
+                    <!-- Botão "Criar novo projeto" -->
+                    <div class="mb-4 ">
+                        <button class="btn btn-ac bg-green-500" >Criar novo projeto </button>
+                    </div>
 
                     <!-- tabela de projetos -->
 
