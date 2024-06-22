@@ -34,14 +34,14 @@ onMounted(() => {
                 <tr>
                     
                     <td>Título</td>
-                    <td>Autor</td>
+                    <td>Descrição</td>
                     <td>Data de Início</td>
                     <td>Data de Prazo</td>
                     <td>Andamento</td>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr v-for="i in 20">
                     
                     <td>Task 1</td>
                     <td>John Doe</td>
@@ -49,40 +49,16 @@ onMounted(() => {
                     <td>01/31/2023</td>
                     <td>Em Progresso</td>
                 </tr>
-                <tr>
-                    
-                    <td>Task 2</td>
-                    <td>Jane Doe</td>
-                    <td>02/01/2023</td>
-                    <td>02/28/2023</td>
-                    <td>Concluída</td>
-                </tr>
-                <tr>
-                    
-                    <td>Task 2</td>
-                    <td>Jane Doe</td>
-                    <td>02/01/2023</td>
-                    <td>02/28/2023</td>
-                    <td>Concluída</td>
-                </tr>
-                <tr>
-                    
-                    <td>Task 2</td>
-                    <td>Jane Doe</td>
-                    <td>02/01/2023</td>
-                    <td>02/28/2023</td>
-                    <td>Concluída</td>
-                </tr>
+                
 
   
-                <var></var>
                 <!-- Adicione mais linhas aqui conforme necessário -->
             </tbody>
             <tfoot class="text-grey">
                 <tr>
                     
                     <td>Título</td>
-                    <td>Autor</td>
+                    <td>Descrição</td>
                     <td>Data de Início</td>
                     <td>Data de Prazo</td>
                     <td>Andamento</td>
