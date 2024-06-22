@@ -27,7 +27,7 @@ onMounted(() => {
             <div class="w-full mt-4 border flex flex-row h-auto">
 
                 <!-- Lado esquerdo: Tarefas -->
-                <div class="w-3/5 border p-2">
+                <div class="w-3/5 border p-2 relative">
                     <h2 class="text-black text-xl">Lista de Tarefas</h2>
                     <div class="overflow-y-auto" style="max-height: 600px; min-height: 600px;">
                         <table class="table table-xs table-pin-rows table-pin-cols">
@@ -76,7 +76,6 @@ onMounted(() => {
                                 </tr>
 
 
-                                <var></var>
                                 <!-- Adicione mais linhas aqui conforme necessário -->
                             </tbody>
                             <tfoot class="text-grey">
@@ -92,7 +91,7 @@ onMounted(() => {
                         </table>
                     </div>
                     <!-- Botão "Adicionar Tarefa" -->
-                    <div class="flex justify-start mt-4">
+                    <div class="flex justify-start mt-4 w-full relative">
                         <NewTask />
                     </div>
                 </div>
