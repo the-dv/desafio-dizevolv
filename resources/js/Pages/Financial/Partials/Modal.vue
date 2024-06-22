@@ -32,7 +32,7 @@ onMounted(() => {
         <table class="table table-xs table-pin-rows table-pin-cols">
             <thead class="text-grey">
                 <tr>
-                    <th>#</th>
+                    
                     <td>Título</td>
                     <td>Autor</td>
                     <td>Data de Início</td>
@@ -42,7 +42,7 @@ onMounted(() => {
             </thead>
             <tbody>
                 <tr>
-                    <th>1</th>
+                    
                     <td>Task 1</td>
                     <td>John Doe</td>
                     <td>01/01/2023</td>
@@ -50,7 +50,7 @@ onMounted(() => {
                     <td>Em Progresso</td>
                 </tr>
                 <tr>
-                    <th>2</th>
+                    
                     <td>Task 2</td>
                     <td>Jane Doe</td>
                     <td>02/01/2023</td>
@@ -58,7 +58,7 @@ onMounted(() => {
                     <td>Concluída</td>
                 </tr>
                 <tr>
-                    <th>2</th>
+                    
                     <td>Task 2</td>
                     <td>Jane Doe</td>
                     <td>02/01/2023</td>
@@ -66,7 +66,7 @@ onMounted(() => {
                     <td>Concluída</td>
                 </tr>
                 <tr>
-                    <th>2</th>
+                    
                     <td>Task 2</td>
                     <td>Jane Doe</td>
                     <td>02/01/2023</td>
@@ -80,7 +80,7 @@ onMounted(() => {
             </tbody>
             <tfoot class="text-grey">
                 <tr>
-                    <th>#</th>
+                    
                     <td>Título</td>
                     <td>Autor</td>
                     <td>Data de Início</td>
