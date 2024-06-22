@@ -1,8 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import Modal from '@/Pages/Financial/Partials/Modal.vue';
-import Modal2 from '@/Pages/Financial/Partials/Modal2.vue';
+import Tarefas from '@/Pages/Financial/Partials/Tarefas.vue';
+import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
 </script>
 
 <template>
@@ -10,14 +10,14 @@ import Modal2 from '@/Pages/Financial/Partials/Modal2.vue';
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Projetos - Financeiro</h2>
         </template>
-          
+
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
 
                     <!-- Botão "Criar novo projeto" -->
                     <div class="mb-4">
-                        <Modal2 ref="modal2"></Modal2>
+                        <NewProject ref="NovoProjeto"></NewProject>
                     </div>
 
                     <!-- Tabela de projetos -->
@@ -61,7 +61,7 @@ import Modal2 from '@/Pages/Financial/Partials/Modal2.vue';
                                         <div class="badge badge-warning text-white">Em andamento</div>
                                     </td>
                                     <td>
-                                        <Modal />
+                                        <Tarefas />
                                     </td>
                                 </tr>
 
@@ -92,7 +92,7 @@ import Modal2 from '@/Pages/Financial/Partials/Modal2.vue';
                                         <div class="badge badge-warning text-white">Em andamento</div>
                                     </td>
                                     <td>
-                                        <Modal />
+                                        <Tarefas />
                                     </td>
                                 </tr>
                             </tbody>
