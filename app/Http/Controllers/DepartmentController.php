@@ -17,6 +17,37 @@ class DepartmentController extends Controller
         return Inertia::render('Dashboard/Dashboard', ['departments' => $departments]);
     }
 
+    public function indexFinancial()
+    {
+        $financial = Department::where('name', 'financial');
+        return Inertia::render('Financial/Financial', ['department' => $financial]);
+    }
+
+    public function indexDevelopment()
+    {
+        $development = Department::where('name', 'development');
+        return Inertia::render('Development/Development', ['department' => $development]);
+    }
+
+    public function indexSelling()
+    {
+        $selling = Department::where('name', 'selling');
+        return Inertia::render('Selling/Selling', ['department' => $selling]);
+    }
+
+    public function indexMarketing()
+    {
+        $marketing = Department::where('name', 'marketing');
+        return Inertia::render('Marketing/Marketing', ['department' => $marketing]);
+    }
+
+    public function indexAttendance()
+    {
+        $attendance = Department::where('name', 'attendance');
+        return Inertia::render('Attendance/Attendance', ['department' => $attendance]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

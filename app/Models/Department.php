@@ -10,7 +10,8 @@ class Department extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'uri'
     ];
 
     public function project()

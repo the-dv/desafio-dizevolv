@@ -22,23 +22,28 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Department::factory()->create([
-            'name' => 'Financeiro'
+            'name' => 'Financeiro',
+            'uri' => 'department.financial'
         ]);
 
         Department::factory()->create([
-            'name' => 'Desenvolvimento'
+            'name' => 'Desenvolvimento',
+            'uri' => 'department.development'
         ]);
 
         Department::factory()->create([
-            'name' => 'Vendas'
+            'name' => 'Vendas',
+            'uri' => 'department.selling'
         ]);
 
         Department::factory()->create([
-            'name' => 'Marketing'
+            'name' => 'Marketing',
+            'uri' => 'department.marketing'
         ]);
 
         Department::factory()->create([
-            'name' => 'Atendimento'
+            'name' => 'Atendimento',
+            'uri' => 'department.attendance'
         ]);
     }
 }
