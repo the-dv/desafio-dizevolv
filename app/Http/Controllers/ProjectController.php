@@ -14,9 +14,12 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $project = Project::where('name', $request->name);
+        $project = Department::with(['project'])  // Certifique-se de que o nome do relacionamento está correto. Pode ser 'projects' se um departamento tiver múltiplos projetos.
+            ->where('name', $request->name)
+            ->first();
 
-        return Inertia::render('Project/Project', ['project', $project]);
+        // Certifique-se de retornar uma chave apropriada e o objeto correto.
+        return Inertia::render('Project/Project', ['department' => $project]);
     }
 
     // public function indexFinancial()

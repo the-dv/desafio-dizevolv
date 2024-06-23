@@ -5,9 +5,11 @@ import Tarefas from '@/Pages/Financial/Partials/Tarefas.vue';
 import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
 
 const page = usePage();
-const projects = page.props.projects;
+const projects = page.props.department.project;
 
-
+const formateDate = (date) => {
+    return new Date(date).toLocaleDateString('pt-BR');
+};
 </script>
 
 <template>
@@ -42,25 +44,31 @@ const projects = page.props.projects;
 
 
                                 <!-- Linha 1 - Exemplo -->
-                                <tr v-for="(i, index) in projects" :key="index">
+                                <tr v-if="true" v-for="(i, index) in projects" :key="index">
                                     <td>
                                         <div class="flex items-center gap-3">
                                             <div>
-                                                <div class="font-bold">Hart Hagerty</div>
-
+                                                <div class="font-bold">{{ i.user_id }}</div>
                                             </div>
 
                                         </div>
                                     </td>
                                     <td>
-                                        <div>Dashboard financeiro em power BI</div>
-                                        <div class="text-xs opacity-50">Criado em: 17/03/2024</div>
+                                        <div>{{ i.title }}</div>
+                                        <div class="text-xs opacity-50">Criado em: {{ formateDate(i.created_at) }}
+                                        </div>
                                     </td>
                                     <td>
-                                        <div>Descrição do projeto aqui...</div>
+                                        <div>{{ i.description }}</div>
                                     </td>
                                     <td>
-                                        <div class="badge badge-warning text-white">Em andamento</div>
+
+                                        <div v-if="i.is_finished" class="rounded-lg flex justify-center text-white"
+                                            style="background-color: green;">
+                                            Concluido</div>
+                                        <div v-else class="badge badge-warning text-white">Em andamento
+                                        </div>
+
                                         <div class="radial-progress ml-5 text-green-600"
                                             style="--value:70; --size:70px; --thickness: 4px;" role="progressbar">
                                             70%
@@ -79,8 +87,7 @@ const projects = page.props.projects;
                             </tbody>
                         </table>
 
-
-                        <p v-else class="text-center my-10">Nenhum projeto adicionado</p>
+                        <!-- <p v-else class="text-center my-10">Nenhum projeto adicionado</p> -->
 
                     </div>
                 </div>
