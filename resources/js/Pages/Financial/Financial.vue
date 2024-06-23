@@ -54,6 +54,13 @@ import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
                                     </td>
                                     <td>
                                         <div class="badge badge-warning text-white">Em andamento</div>
+                                        <div
+                                            class="radial-progress ml-5 text-green-600"
+                                            style="--value:70; --size:70px; --thickness: 4px;"
+                                            role="progressbar">
+                                            70%
+                                         </div>
+
                                     </td>
                                     <td>
                                         <Tarefas />
@@ -79,6 +86,13 @@ import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
                                     </td>
                                     <td>
                                         <div class="badge badge-warning text-white">Em andamento</div>
+                                        <div
+                                            class="radial-progress ml-5 text-green-600"
+                                            style="--value:70; --size:70px; --thickness: 4px;"
+                                            role="progressbar">
+                                            70%
+                                         </div>
+
                                     </td>
                                     <td>
                                         <Tarefas />
