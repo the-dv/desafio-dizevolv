@@ -38,16 +38,11 @@ import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
                                 <tr>
                                     <td>
                                         <div class="flex items-center gap-3">
-                                            <div class="avatar">
-                                                <div class="mask mask-squircle w-12 h-12">
-                                                    <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                                                        alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
-                                            <div>
+                                            <div >
                                                 <div class="font-bold">Hart Hagerty</div>
-                                                <div class="text-sm opacity-50">United States</div>
+
                                             </div>
+                                           
                                         </div>
                                     </td>
                                     <td>
@@ -59,6 +54,13 @@ import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
                                     </td>
                                     <td>
                                         <div class="badge badge-warning text-white">Em andamento</div>
+                                        <div
+                                            class="radial-progress ml-5 text-green-600"
+                                            style="--value:70; --size:70px; --thickness: 4px;"
+                                            role="progressbar">
+                                            70%
+                                         </div>
+
                                     </td>
                                     <td>
                                         <Tarefas />
@@ -69,15 +71,9 @@ import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
                                 <tr>
                                     <td>
                                         <div class="flex items-center gap-3">
-                                            <div class="avatar">
-                                                <div class="mask mask-squircle w-12 h-12">
-                                                    <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
-                                                        alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
+                                            
                                             <div>
                                                 <div class="font-bold">Hart Hagerty</div>
-                                                <div class="text-sm opacity-50">United States</div>
                                             </div>
                                         </div>
                                     </td>
@@ -86,10 +82,17 @@ import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
                                         <div class="text-xs opacity-50">Criado em: 17/03/2024</div>
                                     </td>
                                     <td>
-                                        <div>Descrição do projeto aqui...</div>
+                                        <div> Descrição do projeto aqui...</div>
                                     </td>
                                     <td>
                                         <div class="badge badge-warning text-white">Em andamento</div>
+                                        <div
+                                            class="radial-progress ml-5 text-green-600"
+                                            style="--value:70; --size:70px; --thickness: 4px;"
+                                            role="progressbar">
+                                            70%
+                                         </div>
+
                                     </td>
                                     <td>
                                         <Tarefas />
