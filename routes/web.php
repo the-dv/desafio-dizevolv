@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 
 
-Route::middleware('auth')->group(function () {
-    Route::get('/financeiro', [FinancialController::class, 'index'])->name('financial.index');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/financeiro', [FinancialController::class, 'index'])->name('financial.index');
+// });
 
 
 Route::middleware('auth')->group(function () {
@@ -30,4 +30,4 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__ . '/auth.php';
 require __DIR__ . '/dashboard.php';
-require __DIR__ . '/departments.php';
+require __DIR__ . '/projects.php';
