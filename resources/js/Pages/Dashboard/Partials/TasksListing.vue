@@ -18,7 +18,9 @@ import { Link } from '@inertiajs/vue3';
                 <CurrencyDollarIcon class="w-16 text-green-500 " />
             </div>
 
-            <p class="my-2">1/2 concluidos</p>
+            <p class="my-2">Em progresso:</p>
+            <p class="my-2">Concluídos:</p>
+            <p class="my-2">Total:</p>
 
         </div>
         </Link>
@@ -32,7 +34,9 @@ import { Link } from '@inertiajs/vue3';
                 <CodeBracketIcon class="w-16 text-indigo-500 " />
             </div>
 
-            <p class="my-2">1/2 concluidos</p>
+            <p class="my-2">Em progresso:</p>
+            <p class="my-2">Concluídos:</p>
+            <p class="my-2">Total:</p>
 
 
         </div>
@@ -47,7 +51,9 @@ import { Link } from '@inertiajs/vue3';
                 <BanknotesIcon class="w-16 text-yellow-500 " />
             </div>
 
-            <p class="my-2">1/2 concluidos</p>
+            <p class="my-2">Em progresso:</p>
+            <p class="my-2">Concluídos:</p>
+            <p class="my-2">Total:</p>
 
 
         </div>
@@ -62,7 +68,9 @@ import { Link } from '@inertiajs/vue3';
                 <ChartBarSquareIcon class="w-16 text-blue-500 " />
             </div>
 
-            <p class="my-2">1/2 concluidos</p>
+            <p class="my-2">Em progresso:</p>
+            <p class="my-2">Concluídos:</p>
+            <p class="my-2">Total:</p>
 
 
         </div>
@@ -77,7 +85,9 @@ import { Link } from '@inertiajs/vue3';
                 <UserGroupIcon class="w-16 text-orange-500 " />
             </div>
 
-            <p class="my-2">1/2 concluidos</p>
+            <p class="my-2">Em progresso:</p>
+            <p class="my-2">Concluídos:</p>
+            <p class="my-2">Total:</p>
 
 
         </div>

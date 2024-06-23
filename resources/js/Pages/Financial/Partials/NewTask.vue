@@ -25,9 +25,15 @@ const handleShow = (() => {
             </div>
             <textarea class="textarea textarea-bordered w-full" placeholder="Descricao da tarefa..."></textarea>
         </div>
-        <div class="flex flex-col gap-2">
-            <button @click="handleShow" class="btn btn-primary btn-xs">Adicionar Tarefa</button>
-            <button v-if="isOpen" @click="handleShow" class="text-sm">X Fechar</button>
+        <div class="flex flex-col gap-2 mt-3 ">
+            <div>
+            <button @click="handleShow" class="btn btn-primary btn-xs h-8 ">Adicionar Tarefa</button>
+            </div>
+            
+            <div>
+            <button v-if="isOpen" @click="handleShow" class="text-sm btn-warning text-red-700 p-1 mt-28 align-bottom ml-6 ">Fechar</button>
+            </div>
+        
         </div>
     </div>
 
