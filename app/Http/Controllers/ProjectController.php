@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Project;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -22,36 +23,6 @@ class ProjectController extends Controller
         return Inertia::render('Project/Project', ['department' => $project]);
     }
 
-    // public function indexFinancial()
-    // {
-    //     $financial = Department::where('name', 'financial');
-    //     return Inertia::render('Financial/Financial', ['department' => $financial]);
-    // }
-
-    // public function indexDevelopment()
-    // {
-    //     $development = Department::where('name', 'development');
-    //     return Inertia::render('Development/Development', ['department' => $development]);
-    // }
-
-    // public function indexSelling()
-    // {
-    //     $selling = Department::where('name', 'selling');
-    //     return Inertia::render('Selling/Selling', ['department' => $selling]);
-    // }
-
-    // public function indexMarketing()
-    // {
-    //     $marketing = Department::where('name', 'marketing');
-    //     return Inertia::render('Marketing/Marketing', ['department' => $marketing]);
-    // }
-
-    // public function indexAttendance()
-    // {
-    //     $attendance = Department::where('name', 'attendance');
-    //     return Inertia::render('Attendance/Attendance', ['department' => $attendance]);
-    // }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -65,7 +36,21 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project = new Project();
+
+        try {
+            $project->title = $request->title;
+            $project->description = $request->description;
+            $project->start_date = $request->start_date;
+            $project->end_date = $request->end_date;
+            $project->is_finished = false;
+            $project->department_id = $request->department_id;
+            $project->user_id = 1;
+            $project->save();
+            return redirect()->back();
+        } catch (Exception $e) {
+            return response()->json('Erro ao salvar: ' . $e, 500);
+        }
     }
 
     /**

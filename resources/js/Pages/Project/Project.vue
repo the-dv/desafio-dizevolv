@@ -2,9 +2,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, usePage } from '@inertiajs/vue3';
 import Tarefas from '@/Pages/Financial/Partials/Tarefas.vue';
-import NewProject from '@/Pages/Financial/Partials/NewProject.vue';
+import NewProject from './Partials/NewProject.vue';
 
 const page = usePage();
+const department = page.props.department.id;
 const projects = page.props.department.project;
 
 const formateDate = (date) => {
@@ -24,7 +25,8 @@ const formateDate = (date) => {
 
                     <!-- Botão "Criar novo projeto" -->
                     <div class="mb-4">
-                        <NewProject ref="NovoProjeto"></NewProject>
+
+                        <NewProject ref="NovoProjeto" :departments="department" :user_id="page.props.auth.user.id" />
                     </div>
 
                     <!-- Tabela de projetos -->
