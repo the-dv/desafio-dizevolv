@@ -11,7 +11,8 @@ const props = defineProps(['departments']);
     <h1 class="text-center text-gray-500 text-3xl mb-8">Departamentos</h1>
     <div class="w-full flex flex-col md:flex-row gap-4 justify-center">
 
-        <Link v-for="(i, index) in props.departments" :key="index" :href="'/projeto/' + i.name" method="get" as="button">
+        <Link v-for="(i, index) in props.departments" :key="index" :href="'/projeto/' + i.name" method="get"
+            as="button">
         <div
             class="w-full p-4 h-[30vh] shadow-md py-4 border rounded-md flex flex-col justify-center items-center hover:shadow-xl transition-all">
             <h1 class="text-xl text-gray-500 my-2 font-bold">{{ i.name }} </h1>
@@ -36,7 +37,7 @@ const props = defineProps(['departments']);
                 <UserGroupIcon class="w-16 text-orange-500 " />
             </div>
 
-            <p class="my-2">1/2 concluidos</p>
+            <p class="my-2">0/0 concluidos</p>
 
         </div>
         </Link>

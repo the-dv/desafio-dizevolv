@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const page = usePage();
 const department = page.props.department.id;
+const departmentName = page.props.department.name;
 const projects = page.props.department.project;
 
 const formateDate = (date) => {
@@ -36,7 +37,7 @@ const submitDelete = async (project_id) => {
 <template>
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Projetos - Financeiro</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Projetos - {{ departmentName }}</h2>
         </template>
 
         <div class="py-12">
