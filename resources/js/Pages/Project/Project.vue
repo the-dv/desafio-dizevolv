@@ -1,9 +1,11 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, usePage } from '@inertiajs/vue3';
+import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { TrashIcon } from '@heroicons/vue/24/outline';
 import Tarefas from '@/Pages/Financial/Partials/Tarefas.vue';
 import NewProject from './Partials/NewProject.vue';
+import axios from 'axios';
+
 
 const page = usePage();
 const department = page.props.department.id;
@@ -12,6 +14,22 @@ const projects = page.props.department.project;
 const formateDate = (date) => {
     return new Date(date).toLocaleDateString('pt-BR');
 };
+
+
+const submitDelete = async (project_id) => {
+    await axios.delete(route('project.delete'), {
+        data: { project_id: project_id }
+    })
+        .then((response) => {
+            window.location.reload();
+        })
+        .catch(error => {
+            console.error(error);
+        });
+};
+
+
+
 </script>
 
 <template>
@@ -80,9 +98,10 @@ const formateDate = (date) => {
                                     </td>
                                     <td class="flex gap-2">
                                         <Tarefas />
-                                        <button class="p-1 bg-red-100 rounded-md">
+                                        <button @click="submitDelete(i.id)" class="p-1 bg-red-100 rounded-md">
                                             <TrashIcon class="w-5 text-red-500" />
                                         </button>
+
                                     </td>
                                 </tr>
 

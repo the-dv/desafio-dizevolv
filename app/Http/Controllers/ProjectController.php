@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 use App\Models\Project;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class ProjectController extends Controller
@@ -81,8 +84,9 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy(Request $request): JsonResponse
     {
-        //
+        $project =  Project::where('id', $request->project_id)->delete();
+        return response()->json($project, 200);
     }
 }

@@ -12,4 +12,5 @@ Route::middleware('auth')->group(function () {
 
     // insercao
     Route::post('/cadastro', [ProjectController::class, 'store'])->name('project.store');
+    Route::delete('/delete-project', [ProjectController::class, 'destroy'])->name('project.delete');
 });
