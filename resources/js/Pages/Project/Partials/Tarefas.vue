@@ -1,17 +1,39 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import NewTask from './NewTask.vue';
+import axios from 'axios';
+import { useForm } from '@inertiajs/vue3';
 const modalID = ref('');
-const showModalLogin = ref(false);
+
+const props = defineProps(['project_id']);
+
+const fetchedTasks = ref([]);
 
 const showModal = () => {
     const modal = document.getElementById(modalID.value);
     if (modal) modal.showModal();
 };
 
+async function fetchTasks() {
+    var res = await axios.get(route('tasks.index'))
+        .then(response => {
+            fetchedTasks.value = response.data;
+            console.log(response.data)
+        })
+}
+
 onMounted(() => {
     modalID.value = 'modal_' + Math.floor(Math.random() * 10000000);
+    fetchTasks();
 });
+
+const formateDate = (date) => {
+    return new Date(date).toLocaleDateString('pt-BR');
+};
+
+const refreshData = () => {
+    fetchTasks();
+};
 
 </script>
 
@@ -25,11 +47,11 @@ onMounted(() => {
             </form>
             <h3 class="font-bold text-lg">Tarefas: nome do projeto</h3>
             <div class="w-full mt-4 border flex flex-row h-auto">
-
                 <!-- Lado esquerdo: Tarefas -->
                 <div class="w-3/5 border p-2 relative">
                     <h2 class="text-black text-xl">Lista de Tarefas</h2>
                     <div class="overflow-y-auto" style="max-height: 600px; min-height: 600px;">
+
                         <table class="table table-xs table-pin-rows table-pin-cols">
                             <thead class="text-grey">
                                 <tr>
@@ -39,48 +61,27 @@ onMounted(() => {
                                     <td>Data de Início</td>
                                     <td>Data de Prazo</td>
                                     <td>Andamento</td>
+                                    <td>Status</td>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-
-                                    <td>Task 1</td>
+                                <tr v-for="(i, index) in fetchedTasks[0]" :key="index">
+                                    <td>{{ i.title }}</td>
                                     <td>John Doe</td>
-                                    <td>01/01/2023</td>
-                                    <td>01/31/2023</td>
-                                    <td>Em Progresso</td>
-                                </tr>
-                                <tr>
+                                    <td>{{ formateDate(i.start_date) }}</td>
+                                    <td>{{ formateDate(i.end_date) }}</td>
+                                    <td v-if="i.is_finished == 1" class="text-green-600">Concluida</td>
+                                    <td v-else class="text-orange-500">Em andamento</td>
 
-                                    <td>Task 2</td>
-                                    <td>Jane Doe</td>
-                                    <td>02/01/2023</td>
-                                    <td>02/28/2023</td>
-                                    <td>Concluída</td>
+                                    <td>
+                                        <input type="checkbox" class="checkbox checkbox-primary" />
+                                    </td>
                                 </tr>
-                                <tr>
-
-                                    <td>Task 2</td>
-                                    <td>Jane Doe</td>
-                                    <td>02/01/2023</td>
-                                    <td>02/28/2023</td>
-                                    <td>Concluída</td>
-                                </tr>
-                                <tr>
-
-                                    <td>Task 2</td>
-                                    <td>Jane Doe</td>
-                                    <td>02/01/2023</td>
-                                    <td>02/28/2023</td>
-                                    <td>Concluída</td>
-                                </tr>
-
 
                                 <!-- Adicione mais linhas aqui conforme necessário -->
                             </tbody>
                             <tfoot class="text-grey">
                                 <tr>
-
                                     <td>Título</td>
                                     <td>Autor</td>
                                     <td>Data de Início</td>
@@ -92,7 +93,7 @@ onMounted(() => {
                     </div>
                     <!-- Botão "Adicionar Tarefa" -->
                     <div class="flex justify-start mt-4 w-full relative">
-                        <NewTask />
+                        <NewTask :project_id="props.project_id" @refresh="refreshData" />
                     </div>
                 </div>
 

@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->dateTime('start_date')->nullable();
-            $table->dateTime('is_finished');
+            $table->dateTime('end_date')->nullable();
+            $table->boolean('is_finished');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->timestamps();

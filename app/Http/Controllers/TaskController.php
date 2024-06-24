@@ -10,9 +10,11 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $tasks =  Task::where('project_id', $request->project_id)->get();
+        $tasks = Task::all();
+        return response()->json([$tasks], 200);
     }
 
     /**
@@ -28,7 +30,19 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = new Task();
+
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->start_date = $request->start_date;
+        $task->end_date = $request->end_date;
+        $task->is_finished = false;
+        $task->project_id = $request->project_id;
+        $task->user_id = $request->user_id;
+
+        $task->save();
+
+        return response()->json('success', 200);
     }
 
     /**

@@ -2,9 +2,10 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { TrashIcon } from '@heroicons/vue/24/outline';
-import Tarefas from '@/Pages/Financial/Partials/Tarefas.vue';
+import Tarefas from './Partials/Tarefas.vue';
 import NewProject from './Partials/NewProject.vue';
 import axios from 'axios';
+
 
 
 const page = usePage();
@@ -41,7 +42,6 @@ const submitDelete = async (project_id) => {
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
-
                     <!-- Botão "Criar novo projeto" -->
                     <div class="mb-4">
 
@@ -97,7 +97,7 @@ const submitDelete = async (project_id) => {
 
                                     </td>
                                     <td class="flex gap-2">
-                                        <Tarefas />
+                                        <Tarefas :project_id="i.id" />
                                         <button @click="submitDelete(i.id)" class="p-1 bg-red-100 rounded-md">
                                             <TrashIcon class="w-5 text-red-500" />
                                         </button>
