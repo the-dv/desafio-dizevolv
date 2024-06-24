@@ -32,7 +32,6 @@ const submit = () => {
         onSuccess: () => {
             window.location.reload();
         }
-
     });
 };
 

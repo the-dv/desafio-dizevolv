@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Project;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ProjectController extends Controller
@@ -15,7 +16,7 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $project = Department::with(['project'])  // Certifique-se de que o nome do relacionamento está correto. Pode ser 'projects' se um departamento tiver múltiplos projetos.
+        $project = Department::with(['project.user:id,name'])
             ->where('name', $request->name)
             ->first();
 
@@ -45,7 +46,7 @@ class ProjectController extends Controller
             $project->end_date = $request->end_date;
             $project->is_finished = false;
             $project->department_id = $request->department_id;
-            $project->user_id = 1;
+            $project->user_id = Auth::id();
             $project->save();
             return redirect()->back();
         } catch (Exception $e) {

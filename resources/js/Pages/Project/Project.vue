@@ -50,7 +50,7 @@ const formateDate = (date) => {
                                     <td>
                                         <div class="flex items-center gap-3">
                                             <div>
-                                                <div class="font-bold">{{ i.user_id }}</div>
+                                                <div class="font-bold">{{ i.user.name }}</div>
                                             </div>
 
                                         </div>
