@@ -14,7 +14,7 @@ class Department extends Model
         'uri'
     ];
 
-    public function project()
+    public function projects()
     {
         return $this->hasMany(Project::class);
     }

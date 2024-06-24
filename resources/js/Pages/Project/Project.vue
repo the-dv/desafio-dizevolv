@@ -9,10 +9,12 @@ import axios from 'axios';
 
 
 const page = usePage();
-const department = page.props.department.id;
-const departmentName = page.props.department.name;
-const projects = page.props.department.project;
+const department = page.props.departments[0].department.id;
+const departmentName = page.props.departments[0].department.name;
+// const projects = page.props.departments[0].department.projects;
 
+
+const projects = page.props.departments[0].projects;
 
 const formateDate = (date) => {
     return new Date(date).toLocaleDateString('pt-BR');
@@ -53,11 +55,12 @@ function refreshPage() {
 
                         <NewProject ref="NovoProjeto" :departments="department" :user_id="page.props.auth.user.id" />
 
-                        <button @click="refreshPage()" class="flex text-blue-500 items-center">
+                        <button @click="refreshPage()" class="flex text-blue items-center">
                             <ArrowPathIcon class="w-4" /> Atualizar
                         </button>
                     </div>
 
+                    {{ department_test }}
                     <!-- Tabela de projetos -->
                     <div class="overflow-x-auto">
                         <table v-if="projects" class="table">
@@ -79,52 +82,53 @@ function refreshPage() {
                                     <td>
                                         <div class="flex items-center gap-3">
                                             <div>
-                                                <div class="font-bold">{{ i.user.name }}</div>
+                                                <div class="font-bold">{{ i.project.user.name }}</div>
                                             </div>
 
                                         </div>
                                     </td>
                                     <td>
                                         <div>{{ i.title }}</div>
-                                        <div class="text-xs opacity-50">Criado em: {{ formateDate(i.created_at) }}
+                                        <div class="text-xs opacity-50">Criado em: {{ formateDate(i.project.created_at)
+                                            }}
                                         </div>
                                     </td>
                                     <td>
-                                        <div>{{ i.description }}</div>
+                                        <div>{{ i.project.description }}</div>
+                                        <!-- {{ i }} -->
                                     </td>
                                     <td>
 
-                                        <div v-if="page.props.tasks === page.props.due_tasks"
-                                            class="rounded-lg flex justify-center text-white"
+                                        <div v-if="i.is_finished" class="rounded-lg flex justify-center text-white"
                                             style="background-color: green;">
                                             Concluido</div>
-                                        <div v-else class="badge badge-warning text-white text-nowrap ">Em
-                                            andamento
+                                        <div v-else class="badge badge-warning text-white">Em andamento
                                         </div>
 
                                         <!-- <div class="radial-progress ml-5 text-green-600"
                                             style="--value:70; --size:45px; --thickness: 4px;" role="progressbar">
                                             {{ ((page.props.due_tasks / page.props.tasks) * 100).toFixed(0) }}
                                         </div> -->
-                                        <div v-if="page.props.tasks > page.props.due_tasks"
-                                            class="relative inline-flex items-center justify-center w-12 h-12 ml-2">
+                                        <div class="relative inline-flex items-center justify-center w-12 h-12">
                                             <svg class="absolute w-full h-full transform -rotate-90">
                                                 <circle class="text-gray-300" stroke-width="4" stroke="currentColor"
                                                     fill="transparent" r="20" cx="24" cy="24" />
-                                                <circle class="text-green-600" stroke-width="4" stroke-dasharray="125.6"
-                                                    :stroke-dashoffset="`calc(125.6 - (125.6 * ${((page.props.due_tasks / page.props.tasks) * 100).toFixed(0)}) / 100)`"
+                                                <circle v-if="i.totalTasks" class="text-green-600" stroke-width="4"
+                                                    stroke-dasharray="125.6"
+                                                    :stroke-dashoffset="`calc(125.6 - (125.6 * ${((i.finishedTasks / i.totalTasks) * 100).toFixed(0)}) / 100)`"
                                                     stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
                                             </svg>
-                                            <span class="text-green-600 text-xsm">{{ ((page.props.due_tasks /
-                                                page.props.tasks) *
-                                                100).toFixed(0) }}%</span>
+                                            <small class="text-green-600 text-sm">
+                                                {{ i.totalTasks ? ((i.finishedTasks / i.totalTasks) * 100)
+                                                    : 0
+                                                }} %</small>
                                         </div>
+
 
                                     </td>
                                     <td class="flex gap-2">
-                                        <Tarefas :project_id="i.id" />
-                                        <button v-if="i.user.id === page.props.auth.user.id" @click="submitDelete(i.id)"
-                                            class="p-1 bg-red-100 rounded-md">
+                                        <Tarefas :project_id="i.project.id" />
+                                        <button @click="submitDelete(i.project.id)" class="p-1 bg-red-100 rounded-md">
                                             <TrashIcon class="w-5 text-red-500" />
                                         </button>
 

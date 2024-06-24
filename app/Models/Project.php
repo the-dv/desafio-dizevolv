@@ -16,13 +16,12 @@ class Project extends Model
         'department_id'
     ];
 
-
     public function department()
     {
         return $this->belongsTo(Department::class);
     }
 
-    public function task()
+    public function tasks()
     {
         return $this->hasMany(Task::class);
     }

@@ -20,18 +20,35 @@ class ProjectController extends Controller
      */
     public function index(Request $request)
     {
-        $project = Department::with(['project.user:id,name'])
+        $departments = Department::with(['projects.user:id,name', 'projects.tasks'])
             ->where('name', $request->name)
-            ->first();
+            ->get();
 
-        $tasks = Task::where('project_id', $project->id)->count();
-        $due_tasks = Task::where('is_finished', true)->count();
+        if ($departments->isEmpty()) {
+            return redirect()->back()->with('error', 'Departamento não encontrado.');
+        }
 
-        return Inertia::render('Project/Project', ['department' => $project, 'tasks' => $tasks, 'due_tasks' => $due_tasks]);
+        $departmentData = $departments->map(function ($department) {
+            return [
+                'department' => $department,
+                'projects' => $department->projects->map(function ($project) {
+                    return [
+                        'project' => $project,
+                        'tasks' => $project->tasks,
+                        'totalTasks' => $project->tasks->count(),
+                        'finishedTasks' => $project->tasks->where('is_finished', 1)->count(),
+                    ];
+                })
+            ];
+        });
+
+        return Inertia::render('Project/Project', [
+            'departments' => $departmentData
+        ]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new resource.   
      */
     public function create()
     {

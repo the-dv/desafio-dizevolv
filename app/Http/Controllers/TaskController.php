@@ -12,8 +12,15 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $tasks =  Task::with('user:id,name')->where('project_id', $request->project_id)->get();
-        return response()->json([$tasks], 200);
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+        ]);
+
+        $tasks = Task::with('user:id,name')
+            ->where('project_id', $request->project_id)
+            ->get();
+
+        return response()->json($tasks, 200);
     }
 
     /**
