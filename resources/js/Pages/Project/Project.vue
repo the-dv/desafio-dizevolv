@@ -1,5 +1,6 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
+import { ArrowPathIcon } from '@heroicons/vue/24/outline'
 import { Head, useForm, usePage } from '@inertiajs/vue3';
 import { TrashIcon } from '@heroicons/vue/24/outline';
 import Tarefas from './Partials/Tarefas.vue';
@@ -7,11 +8,11 @@ import NewProject from './Partials/NewProject.vue';
 import axios from 'axios';
 
 
-
 const page = usePage();
 const department = page.props.department.id;
 const departmentName = page.props.department.name;
 const projects = page.props.department.project;
+
 
 const formateDate = (date) => {
     return new Date(date).toLocaleDateString('pt-BR');
@@ -31,6 +32,10 @@ const submitDelete = async (project_id) => {
 };
 
 
+function refreshPage() {
+    window.location.reload();
+}
+
 
 </script>
 
@@ -44,9 +49,13 @@ const submitDelete = async (project_id) => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-4">
                     <!-- Botão "Criar novo projeto" -->
-                    <div class="mb-4">
+                    <div class="mb-4 flex justify-center gap-2">
 
                         <NewProject ref="NovoProjeto" :departments="department" :user_id="page.props.auth.user.id" />
+
+                        <button @click="refreshPage()" class="flex text-blue-500 items-center">
+                            <ArrowPathIcon class="w-4" /> Atualizar
+                        </button>
                     </div>
 
                     <!-- Tabela de projetos -->
@@ -85,21 +94,37 @@ const submitDelete = async (project_id) => {
                                     </td>
                                     <td>
 
-                                        <div v-if="i.is_finished" class="rounded-lg flex justify-center text-white"
+                                        <div v-if="page.props.tasks === page.props.due_tasks"
+                                            class="rounded-lg flex justify-center text-white"
                                             style="background-color: green;">
                                             Concluido</div>
-                                        <div v-else class="badge badge-warning text-white">Em andamento
+                                        <div v-else class="badge badge-warning text-white text-nowrap ">Em
+                                            andamento
                                         </div>
 
-                                        <div class="radial-progress ml-5 text-green-600"
-                                            style="--value:70; --size:70px; --thickness: 4px;" role="progressbar">
-                                            70%
+                                        <!-- <div class="radial-progress ml-5 text-green-600"
+                                            style="--value:70; --size:45px; --thickness: 4px;" role="progressbar">
+                                            {{ ((page.props.due_tasks / page.props.tasks) * 100).toFixed(0) }}
+                                        </div> -->
+                                        <div v-if="page.props.tasks > page.props.due_tasks"
+                                            class="relative inline-flex items-center justify-center w-12 h-12 ml-2">
+                                            <svg class="absolute w-full h-full transform -rotate-90">
+                                                <circle class="text-gray-300" stroke-width="4" stroke="currentColor"
+                                                    fill="transparent" r="20" cx="24" cy="24" />
+                                                <circle class="text-green-600" stroke-width="4" stroke-dasharray="125.6"
+                                                    :stroke-dashoffset="`calc(125.6 - (125.6 * ${((page.props.due_tasks / page.props.tasks) * 100).toFixed(0)}) / 100)`"
+                                                    stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
+                                            </svg>
+                                            <span class="text-green-600 text-xsm">{{ ((page.props.due_tasks /
+                                                page.props.tasks) *
+                                                100).toFixed(0) }}%</span>
                                         </div>
 
                                     </td>
                                     <td class="flex gap-2">
                                         <Tarefas :project_id="i.id" />
-                                        <button @click="submitDelete(i.id)" class="p-1 bg-red-100 rounded-md">
+                                        <button v-if="i.user.id === page.props.auth.user.id" @click="submitDelete(i.id)"
+                                            class="p-1 bg-red-100 rounded-md">
                                             <TrashIcon class="w-5 text-red-500" />
                                         </button>
 

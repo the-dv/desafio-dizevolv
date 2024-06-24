@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Project;
+use App\Models\Task;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -23,8 +24,10 @@ class ProjectController extends Controller
             ->where('name', $request->name)
             ->first();
 
-        // Certifique-se de retornar uma chave apropriada e o objeto correto.
-        return Inertia::render('Project/Project', ['department' => $project]);
+        $tasks = Task::where('project_id', $project->id)->count();
+        $due_tasks = Task::where('is_finished', true)->count();
+
+        return Inertia::render('Project/Project', ['department' => $project, 'tasks' => $tasks, 'due_tasks' => $due_tasks]);
     }
 
     /**
