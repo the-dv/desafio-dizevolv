@@ -74,7 +74,9 @@ async function updateTask(task_id) {
                             </thead>
                             <tbody>
                                 <tr v-for="(i, index) in fetchedTasks[0]" :key="index">
-                                    <td>{{ i.title }}</td>
+                                    <td class="font-bold">{{ i.title }} <br> <small class="text-gray-600">{{
+                                        i.description }}</small></td>
+
                                     <td>John Doe</td>
                                     <td>{{ formateDate(i.start_date) }}</td>
                                     <td>{{ formateDate(i.end_date) }}</td>

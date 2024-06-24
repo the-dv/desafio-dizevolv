@@ -40,21 +40,21 @@ const submitTask = async () => {
         <form @submit.prevent="submitTask" class="w-full flex gap-2">
             <div v-if="isOpen" class="w-4/5 flex flex-col gap-2 ">
 
-                <input type="text" v-model="taskData.title" placeholder="Titulo da tarefa"
+                <input type="text" v-model="taskData.title" required placeholder="Titulo da tarefa"
                     class="input input-bordered w-full" />
                 <div class=" flex gap-2">
                     <div class="flex flex-col w-full">
                         <label>Data inicio</label>
-                        <input type="date" v-model="taskData.start_date" class="input input-bordered">
+                        <input type="date" v-model="taskData.start_date" required class="input input-bordered">
                     </div>
                     <div class="flex flex-col w-full">
                         <label>Data prazo</label>
-                        <input type="date" v-model="taskData.end_date" class="input input-bordered">
+                        <input type="date" v-model="taskData.end_date" required class="input input-bordered">
                     </div>
 
                 </div>
                 <textarea v-model="taskData.description" class="textarea textarea-bordered w-full"
-                    placeholder="Descricao da tarefa..."></textarea>
+                    placeholder="Descricao da tarefa..." required></textarea>
             </div>
             <div class="flex flex-col gap-2">
                 <!-- {{ page.props.auth.user.id }} -->
