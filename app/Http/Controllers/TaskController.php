@@ -12,8 +12,7 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $tasks =  Task::where('project_id', '=', $request->project_id)->get();
-        // $tasks = Task::all();
+        $tasks =  Task::where('project_id', $request->project_id)->get();
         return response()->json([$tasks], 200);
     }
 

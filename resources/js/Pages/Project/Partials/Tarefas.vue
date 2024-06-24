@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import NewTask from './NewTask.vue';
 import axios from 'axios';
-import { useForm } from '@inertiajs/vue3';
+import Comments from './Comments.vue';
 const modalID = ref('');
 
 const props = defineProps(['project_id']);
@@ -15,17 +15,13 @@ const showModal = () => {
 };
 
 async function fetchTasks() {
-    var res = await axios.get(route('tasks.index'))
+    var res = await axios.get(route('tasks.index', { project_id: props.project_id }))
         .then(response => {
             fetchedTasks.value = response.data;
             console.log(response.data)
         })
 }
 
-onMounted(() => {
-    modalID.value = 'modal_' + Math.floor(Math.random() * 10000000);
-    fetchTasks();
-});
 
 const formateDate = (date) => {
     return new Date(date).toLocaleDateString('pt-BR');
@@ -42,6 +38,12 @@ async function updateTask(task_id) {
     var res = await axios.patch(route('tasks.update', { id: task_id }
     )).then((response) => { fetchTasks(); });
 };
+
+onMounted(() => {
+    modalID.value = 'modal_' + Math.floor(Math.random() * 10000000);
+    fetchTasks();
+});
+
 
 </script>
 
@@ -111,37 +113,8 @@ async function updateTask(task_id) {
                 </div>
 
 
-                <!-- right side -->
-                <div class="w-2/5     p-2">
-                    <h2 class="text-black text-xl">Comentários:</h2>
-                    <div class="w-full  mt-4 display flex flex-col  ">
-                        <!-- content comentarios -->
-                        <div class="w-full h-[50vh] overflow-x-auto flex flex-col gap-4">
-                            <!-- Comentário -->
-                            <div v-for="i in 6" class="w-full p-1 bg-blue-100 rounded-md">
-                                <div class="flex items-start gap-2">
-                                    <p class="font-semibold">Davi Silva:</p>
-                                    <small class="text-xs text-gray-500 ml-auto">10:30 AM</small>
-                                    <!-- Exemplo de horário -->
-                                </div>
-                                <small class="mr-1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-                                    cumque enim assumenda
-                                    accusantium ipsa praesentium, harum voluptates blanditiis eos saepe qui doloremque
-                                    iure culpa? Ratione veniam officiis itaque quaerat reiciendis.</small>
-                            </div>
-                        </div>
-
-
-                        <div class="w-full flex gap-1 flex-row py-3">
-                            <textarea class="textarea textarea-bordered w-4/5"
-                                placeholder="Escreva um comentário aqui."></textarea>
-                            <button class="1/5 btn btn-sm bg-blue-500 hover:bg-blue-600 text-white">Enviar</button>
-                        </div>
-
-
-                    </div>
-
-                </div>
+                <!-- Comentarios -->
+                <Comments :project_id="props.project_id" />
 
             </div>
         </div>

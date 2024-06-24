@@ -4,15 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comments = Comment::all();
+        $comments = Comment::with(['user:id,name'])
+            ->where('project_id', $request->project_id)
+            ->get();
+
+        // $comments = Comment::all();
         return response()->json(['comments' => $comments]);
     }
 
@@ -29,7 +34,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new Comment();
+        $comment->text = $request->text;
+        $comment->project_id = $request->project_id;
+        $comment->user_id = Auth::id();
+        $comment->save();
+
+        return redirect()->back();
     }
 
     /**
