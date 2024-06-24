@@ -55,7 +55,7 @@ function refreshPage() {
 
                         <NewProject ref="NovoProjeto" :departments="department" :user_id="page.props.auth.user.id" />
 
-                        <button @click="refreshPage()" class="flex text-blue items-center">
+                        <button @click="refreshPage()" class="flex text-blue items-center text-blue-500">
                             <ArrowPathIcon class="w-4" /> Atualizar
                         </button>
                     </div>
