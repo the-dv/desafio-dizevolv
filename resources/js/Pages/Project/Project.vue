@@ -128,7 +128,9 @@ function refreshPage() {
                                     </td>
                                     <td class="flex gap-2">
                                         <Tarefas :project_id="i.project.id" />
-                                        <button @click="submitDelete(i.project.id)" class="p-1 bg-red-100 rounded-md">
+
+                                        <button v-if="i.project.user.id === page.props.auth.user.id"
+                                            @click="submitDelete(i.project.id)" class="p-1 bg-red-100 rounded-md">
                                             <TrashIcon class="w-5 text-red-500" />
                                         </button>
 
