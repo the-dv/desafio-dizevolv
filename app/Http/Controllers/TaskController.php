@@ -12,7 +12,7 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
-        $tasks =  Task::where('project_id', $request->project_id)->get();
+        $tasks =  Task::with('user:id,name')->where('project_id', $request->project_id)->get();
         return response()->json([$tasks], 200);
     }
 

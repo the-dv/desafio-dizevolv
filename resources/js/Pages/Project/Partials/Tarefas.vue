@@ -76,10 +76,12 @@ onMounted(() => {
                             </thead>
                             <tbody>
                                 <tr v-for="(i, index) in fetchedTasks[0]" :key="index">
+
+
                                     <td class="font-bold">{{ i.title }} <br> <small class="text-gray-600">{{
                                         i.description }}</small></td>
 
-                                    <td>John Doe</td>
+                                    <td>{{ i.user.name }}</td>
                                     <td>{{ formateDate(i.start_date) }}</td>
                                     <td>{{ formateDate(i.end_date) }}</td>
 
