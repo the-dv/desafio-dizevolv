@@ -1,6 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, usePage } from '@inertiajs/vue3';
+import { TrashIcon } from '@heroicons/vue/24/outline';
 import Tarefas from '@/Pages/Financial/Partials/Tarefas.vue';
 import NewProject from './Partials/NewProject.vue';
 
@@ -39,7 +40,7 @@ const formateDate = (date) => {
                                     <th class="text-xl">Nome do projeto</th>
                                     <th class="text-xl">Descrição</th>
                                     <th class="text-xl">Status</th>
-                                    <th class="text-xl">Detalhes</th>
+                                    <th class="text-xl">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,14 +78,13 @@ const formateDate = (date) => {
                                         </div>
 
                                     </td>
-                                    <td>
+                                    <td class="flex gap-2">
                                         <Tarefas />
+                                        <button class="p-1 bg-red-100 rounded-md">
+                                            <TrashIcon class="w-5 text-red-500" />
+                                        </button>
                                     </td>
                                 </tr>
-
-
-
-
 
                             </tbody>
                         </table>

@@ -16,7 +16,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <button @click="showModal" class="btn btn-primary btn-xs">Tarefas do projeto</button>
+    <button @click="showModal" class="btn btn-primary btn-xs">Tarefas</button>
 
     <dialog :id="modalID" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
