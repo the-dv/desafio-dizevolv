@@ -35,6 +35,14 @@ const refreshData = () => {
     fetchTasks();
 };
 
+
+// update task
+
+async function updateTask(task_id) {
+    var res = await axios.patch(route('tasks.update', { id: task_id }
+    )).then((response) => { fetchTasks(); });
+};
+
 </script>
 
 <template>
@@ -70,11 +78,14 @@ const refreshData = () => {
                                     <td>John Doe</td>
                                     <td>{{ formateDate(i.start_date) }}</td>
                                     <td>{{ formateDate(i.end_date) }}</td>
+
                                     <td v-if="i.is_finished == 1" class="text-green-600">Concluida</td>
                                     <td v-else class="text-orange-500">Em andamento</td>
 
                                     <td>
-                                        <input type="checkbox" class="checkbox checkbox-primary" />
+                                        <input @change="updateTask(i.id)" :checked="i.is_finished"
+                                            :disabled="i.is_finished" type="checkbox"
+                                            class="checkbox checkbox-primary" />
                                     </td>
                                 </tr>
 
