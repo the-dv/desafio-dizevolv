@@ -95,33 +95,33 @@ function refreshPage() {
                                     </td>
                                     <td>
                                         <div>{{ i.project.description }}</div>
-                                        <!-- {{ i }} -->
                                     </td>
                                     <td>
 
-                                        <div v-if="i.is_finished" class="rounded-lg flex justify-center text-white"
-                                            style="background-color: green;">
-                                            Concluido</div>
-                                        <div v-else class="badge badge-warning text-white">Em andamento
-                                        </div>
+                                        <div class="flex flex-row items-center gap-1">
+                                            <div v-if="i.finishedTasks >= i.totalTasks && i.totalTasks >= 1"
+                                                class="rounded-lg flex justify-center text-white px-2"
+                                                style="background-color: green;">
+                                                Concluido</div>
+                                            <div v-else class="badge badge-warning text-white text-nowrap">Em andamento
+                                            </div>
 
-                                        <!-- <div class="radial-progress ml-5 text-green-600"
-                                            style="--value:70; --size:45px; --thickness: 4px;" role="progressbar">
-                                            {{ ((page.props.due_tasks / page.props.tasks) * 100).toFixed(0) }}
-                                        </div> -->
-                                        <div class="relative inline-flex items-center justify-center w-12 h-12">
-                                            <svg class="absolute w-full h-full transform -rotate-90">
-                                                <circle class="text-gray-300" stroke-width="4" stroke="currentColor"
-                                                    fill="transparent" r="20" cx="24" cy="24" />
-                                                <circle v-if="i.totalTasks" class="text-green-600" stroke-width="4"
-                                                    stroke-dasharray="125.6"
-                                                    :stroke-dashoffset="`calc(125.6 - (125.6 * ${((i.finishedTasks / i.totalTasks) * 100).toFixed(0)}) / 100)`"
-                                                    stroke="currentColor" fill="transparent" r="20" cx="24" cy="24" />
-                                            </svg>
-                                            <small class="text-green-600 text-sm">
-                                                {{ i.totalTasks ? ((i.finishedTasks / i.totalTasks) * 100)
-                                                    : 0
-                                                }} %</small>
+                                            <div class="relative inline-flex items-center justify-center w-12 h-12">
+                                                <svg class="absolute w-full h-full transform -rotate-90">
+                                                    <circle class="text-gray-300" stroke-width="4" stroke="currentColor"
+                                                        fill="transparent" r="20" cx="24" cy="24" />
+                                                    <circle v-if="i.totalTasks" class="text-green-600" stroke-width="4"
+                                                        stroke-dasharray="125.6"
+                                                        :stroke-dashoffset="`calc(125.6 - (125.6 * ${((i.finishedTasks / i.totalTasks) * 100).toFixed(0)}) / 100)`"
+                                                        stroke="currentColor" fill="transparent" r="20" cx="24"
+                                                        cy="24" />
+                                                </svg>
+                                                <small class="text-green-600 text-sm">
+                                                    {{ i.totalTasks ? ((i.finishedTasks / i.totalTasks) *
+                                                        100).toFixed(0)
+                                                        : 0
+                                                    }} %</small>
+                                            </div>
                                         </div>
 
 
